@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+/* ============================================
+   iWill Design Tokens
+   ============================================ */
+@theme {
+  /* Brand Colours */
+  --color-primary: #1B4D6E;          /* Deep trust blue — headers, CTAs */
+  --color-primary-dark: #133A54;     /* Hover state */
+  --color-primary-light: #E8F1F8;   /* Tinted backgrounds */
+  --color-secondary: #D4603A;        /* Warm coral — accent, signals */
+  --color-secondary-dark: #B84E2E;   /* Hover state */
+  --color-secondary-light: #FDF0EB;  /* Tinted backgrounds */
+
+  /* Neutrals */
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #F8F9FB;   /* Cards, raised sections */
+  --color-surface-muted: #F1F3F5;    /* Disabled, backgrounds */
+  --color-border: #DFE3E8;
+  --color-border-strong: #C4CDD5;
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #5C6370;
+  --color-text-muted: #8C939A;
+
+  /* Feedback */
+  --color-success: #2E7D4F;
+  --color-error: #D32F2F;
+  --color-warning: #E8A838;
+
+  /* Typography */
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+
+  /* Spacing scale (base 4px) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 3px rgba(27, 77, 110, 0.3);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Container */
+  --container-max: 1120px;
+  --container-narrow: 640px;
+}
+
+/* ============================================
+   Global Base Styles
+   ============================================ */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background: var(--color-surface);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  /* Mobile tap target minimum — Stage 1 requirement */
+  button, a, [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+    border-radius: var(--radius-sm);
+  }
+}
