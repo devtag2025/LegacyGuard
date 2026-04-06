@@ -1,260 +1,222 @@
-/*
- * iTrust121 / iWill — Global Stylesheet
- * ─────────────────────────────────────
- * Tailwind CSS v4 — NO tailwind.config.js required.
- * All configuration lives here via @theme.
- *
- * FONTS
- * ─────
- * PP Monument Extended is a commercial font — replacing with Google Fonts equivalents:
- *   Display → Big Shoulders Display  (wide, geometric, bold — closest free match)
- *   Body    → DM Sans               (clean, neutral, professional)
- *
- * COLOURS
- * ───────
- * Defined once in @theme. Tailwind v4 auto-generates utility classes:
- *   --color-night    → text-night, bg-night, border-night, ring-night …
- *   --color-charcoal → text-charcoal, bg-charcoal …
- *   --color-cadet    → text-cadet, bg-cadet, border-cadet …
- *   --color-frosted  → text-frosted, bg-frosted …
- *
- * NEVER hardcode hex in JSX. Use:
- *   Tailwind class → text-night / bg-cadet / border-charcoal
- *   CSS variable   → var(--color-night)   ← only for inline styles
- *   Semantic alias → var(--text-primary)  ← for complex cases in CSS
- */
-
-/* Google Fonts — loaded before Tailwind so they're available immediately */
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
 
 @import "tailwindcss";
+/*
+
+* iTrust121 / iWill — Global Stylesheet
+* ─────────────────────────────────────
+* Tailwind CSS v4 — NO tailwind.config.js required.
+* All configuration lives here via @theme.
+  */
+
+/* ─────────────────────────────────────
+CUSTOM FONT — PP Monument Extended
+───────────────────────────────────── */
+@font-face {
+font-family: 'PP Monument Extended';
+src: url('/fonts/PPMonumentExtended-Light.otf') format('opentype');
+font-weight: 300;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'PP Monument Extended';
+src: url('/fonts/PPMonumentExtended-Regular.otf') format('opentype');
+font-weight: 400;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'PP Monument Extended';
+src: url('/fonts/PPMonumentExtended-Black.otf') format('opentype');
+font-weight: 900;
+font-style: normal;
+}
+
+/* Keep DM Sans for body text */
+
 
 /* ══════════════════════════════════════════════════════
-   @theme  ←  Tailwind v4 config (replaces tailwind.config.js)
-   All tokens here become Tailwind utility classes.
-   ══════════════════════════════════════════════════════ */
+@theme
+══════════════════════════════════════════════════════ */
 @theme {
 
-  /* Brand colours — iTrust121 Brand Guide §1.1 */
-  --color-night:    #131313;   /* Night          rgb(19,  19,  19)    */
-  --color-charcoal: #363E44;   /* Charcoal       rgb(54,  62,  68)    */
-  --color-cadet:    #9DB4C0;   /* Cadet Grey     rgb(157, 180, 192)   */
-  --color-frosted:  #FDFEFE;   /* Frosted White  rgb(253, 254, 254)   */
+--color-night:    #131313;
+--color-charcoal: #363E44;
+--color-cadet:    #9DB4C0;
+--color-frosted:  #FDFEFE;
 
-  /* Font stacks — Brand Guide §2.0 */
-  --font-monument: "Big Shoulders Display", sans-serif;
-  --font-sans:     "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+/* UPDATED FONT SYSTEM */
+--font-monument: "PP Monument Extended", sans-serif;
+--font-sans:     "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* ══════════════════════════════════════════════════════
-   CSS custom properties — semantic aliases & opacity variants
-   These are for inline styles / complex CSS only.
-   For JSX always prefer Tailwind classes.
-   ══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════ */
 :root {
-  /* Opacity variants */
-  --color-night-80:    rgba(19,  19,  19,  0.80);
-  --color-night-60:    rgba(19,  19,  19,  0.60);
-  --color-cadet-40:    rgba(157, 180, 192, 0.40);
-  --color-cadet-20:    rgba(157, 180, 192, 0.18);
+--color-night-80:    rgba(19, 19, 19, 0.80);
+--color-night-60:    rgba(19, 19, 19, 0.60);
+--color-cadet-40:    rgba(157, 180, 192, 0.40);
+--color-cadet-20:    rgba(157, 180, 192, 0.18);
 
-  /* Semantic text */
-  --text-primary:      #131313;
-  --text-secondary:    #363E44;
-  --text-muted:        rgba(19, 19, 19, 0.60);
-  --text-on-dark:      #FDFEFE;
+--text-primary:      #131313;
+--text-secondary:    #363E44;
+--text-muted:        rgba(19, 19, 19, 0.60);
+--text-on-dark:      #FDFEFE;
 
-  /* Semantic backgrounds */
-  --bg-base:           #FDFEFE;
-  --bg-subtle:         #F4F7F9;
-  --bg-dark:           #131313;
-  --bg-cadet-wash:     rgba(157, 180, 192, 0.18);
+--bg-base:           #FDFEFE;
+--bg-subtle:         #F4F7F9;
+--bg-dark:           #131313;
+--bg-cadet-wash:     rgba(157, 180, 192, 0.18);
 
-  /* Semantic borders */
-  --border-subtle:     rgba(157, 180, 192, 0.20);
-  --border-on-dark:    rgba(157, 180, 192, 0.18);
+--border-subtle:     rgba(157, 180, 192, 0.20);
+--border-on-dark:    rgba(157, 180, 192, 0.18);
 
-  /* Transitions */
-  --t-fast:  150ms ease;
-  --t-base:  250ms ease;
+--t-fast:  150ms ease;
+--t-base:  250ms ease;
 }
 
-/* ══════════════════════════════════════════════════════
-   Base — resets & document defaults
-   ══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════ */
 @layer base {
-  *, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    font-family: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.65;
-    color: #131313;
-    background-color: #FDFEFE;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* All headings use the display font */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Big Shoulders Display", sans-serif;
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
-
-  p  { margin: 0; }
-  a  { color: inherit; text-decoration: none; }
-
-  :focus-visible {
-    outline: 2px solid #9DB4C0;
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
-  ::selection {
-    background-color: #9DB4C0;
-    color: #131313;
-  }
+html {
+scroll-behavior: smooth;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
 }
 
-/* ══════════════════════════════════════════════════════
-   Components — shared class utilities
-   These can be applied in JSX like any Tailwind class.
-   ══════════════════════════════════════════════════════ */
+body {
+font-family: var(--font-sans);
+font-size: 1rem;
+line-height: 1.65;
+color: #131313;
+background-color: #FDFEFE;
+margin: 0;
+padding: 0;
+}
+
+/* HEADINGS → PP Monument */
+h1, h2, h3, h4, h5, h6 {
+font-family: var(--font-monument);
+font-weight: 400;
+line-height: 1.1;
+letter-spacing: -0.01em;
+margin: 0;
+}
+
+/* Typography hierarchy (pro level) */
+h1 { font-weight: 900; }
+h2 { font-weight: 400; }
+h3 { font-weight: 300; }
+
+p  { margin: 0; }
+a  { color: inherit; text-decoration: none; }
+
+:focus-visible {
+outline: 2px solid #9DB4C0;
+outline-offset: 3px;
+border-radius: 2px;
+}
+
+::selection {
+background-color: #9DB4C0;
+color: #131313;
+}
+}
+
+/* ══════════════════════════════════════════════════════ */
 @layer components {
 
-  /* ── Layout ─────────────────────────────────────── */
-  .container-brand {
-    width: 100%;
-    max-width: 1100px;
-    margin-inline: auto;
-    padding-inline: 1.5rem;
-  }
-  @media (min-width: 768px)  { .container-brand { padding-inline: 2.5rem; } }
-  @media (min-width: 1024px) { .container-brand { padding-inline: 4rem;   } }
+.container-brand {
+width: 100%;
+max-width: 1100px;
+margin-inline: auto;
+padding-inline: 1.5rem;
+}
+@media (min-width: 768px)  { .container-brand { padding-inline: 2.5rem; } }
+@media (min-width: 1024px) { .container-brand { padding-inline: 4rem;   } }
 
-  .section {
-    padding-block: 5rem;
-  }
-  @media (min-width: 1024px) { .section { padding-block: 7rem; } }
+.section {
+padding-block: 5rem;
+}
+@media (min-width: 1024px) { .section { padding-block: 7rem; } }
 
-  /* ── Typography ─────────────────────────────────── */
-  /* Eyebrow / section label */
-  .label-eyebrow {
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #9DB4C0;
-  }
-
-  /* Short horizontal rule used as section prefix */
-  .divider {
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background-color: #9DB4C0;
-    vertical-align: middle;
-  }
-
-  /* ── Buttons ─────────────────────────────────────── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    padding: 0.8rem 1.75rem;
-    border-radius: 2px;
-    border: 1.5px solid transparent;
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
-    transition:
-      background-color var(--t-base),
-      color            var(--t-base),
-      border-color     var(--t-base);
-  }
-  .btn:active { transform: translateY(1px); }
-
-  /* Night fill — light backgrounds */
-  .btn-primary              { background:#131313; color:#FDFEFE; border-color:#131313; }
-  .btn-primary:hover        { background:#363E44; border-color:#363E44; }
-
-  /* Ghost — dark backgrounds */
-  .btn-ghost                { background:transparent; color:#FDFEFE; border-color:#FDFEFE; }
-  .btn-ghost:hover          { background:#FDFEFE; color:#131313; }
-
-  /* Outline — light backgrounds */
-  .btn-outline              { background:transparent; color:#131313; border-color:#131313; }
-  .btn-outline:hover        { background:#131313; color:#FDFEFE; }
-
-  /* ── Questionnaire funnel ────────────────────────── */
-  .funnel-screen {
-    min-height: 100dvh;
-    background: #131313;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
-  }
-
-  .funnel-card {
-    width: 100%;
-    max-width: 600px;
-    background: #363E44;
-    border: 1px solid var(--border-on-dark);
-    border-radius: 4px;
-    padding: 2.5rem 2rem;
-  }
-
-  .option-card {
-    width: 100%;
-    padding: 1rem 1.25rem;
-    border: 1px solid var(--border-on-dark);
-    border-radius: 2px;
-    background: transparent;
-    color: #FDFEFE;
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.9rem;
-    text-align: left;
-    cursor: pointer;
-    transition: border-color var(--t-fast), background var(--t-fast);
-  }
-  .option-card:hover    { border-color:#9DB4C0; background:rgba(157,180,192,0.08); }
-  .option-card.selected { border-color:#9DB4C0; background:rgba(157,180,192,0.12); }
+.label-eyebrow {
+font-family: var(--font-sans);
+font-size: 0.6875rem;
+font-weight: 500;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: #9DB4C0;
 }
 
-/* ══════════════════════════════════════════════════════
-   Utilities — scroll animation (used by useScrollAnimation hook)
-   ══════════════════════════════════════════════════════ */
-@layer utilities {
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .animate-on-scroll.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.divider {
+display: inline-block;
+width: 2rem;
+height: 1px;
+background-color: #9DB4C0;
+}
 
-  .delay-100 { transition-delay: 100ms; }
-  .delay-200 { transition-delay: 200ms; }
-  .delay-300 { transition-delay: 300ms; }
-  .delay-400 { transition-delay: 400ms; }
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+font-family: var(--font-sans);
+font-size: 0.75rem;
+font-weight: 500;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+padding: 0.8rem 1.75rem;
+border-radius: 2px;
+border: 1.5px solid transparent;
+cursor: pointer;
+transition: all var(--t-base);
+}
+
+.btn-primary { background:#131313; color:#FDFEFE; }
+.btn-primary:hover { background:#363E44; }
+
+.btn-ghost { background:transparent; color:#FDFEFE; border-color:#FDFEFE; }
+.btn-ghost:hover { background:#FDFEFE; color:#131313; }
+
+.btn-outline { background:transparent; color:#131313; border-color:#131313; }
+.btn-outline:hover { background:#131313; color:#FDFEFE; }
+
+.funnel-screen {
+min-height: 100dvh;
+background: #131313;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.funnel-card {
+width: 100%;
+max-width: 600px;
+background: #363E44;
+border: 1px solid var(--border-on-dark);
+padding: 2.5rem 2rem;
+}
+
+.option-card {
+padding: 1rem;
+border: 1px solid var(--border-on-dark);
+color: #FDFEFE;
+font-family: var(--font-sans);
+cursor: pointer;
+}
+}
+
+/* ══════════════════════════════════════════════════════ */
+@layer utilities {
+.animate-on-scroll {
+opacity: 0;
+transform: translateY(20px);
+transition: 0.6s;
+}
+.animate-on-scroll.in-view {
+opacity: 1;
+transform: translateY(0);
+}
 }

@@ -86,7 +86,7 @@ function TriggerCard({ idx, icon, headline, body }) {
     >
       {/* Index */}
       <span
-        className="absolute top-5 right-5 font-monument text-md tracking-widest"
+        className="absolute top-5 right-5 font-monument text-xs tracking-widest"
         style={{ color: "rgba(157,180,192,.3)" }}
         aria-hidden="true"
       >
@@ -105,8 +105,8 @@ function TriggerCard({ idx, icon, headline, body }) {
       {/* Content */}
       <div>
         <h3
-          className="font-monument text-night text-lg leading-widest mb-2.5"
-          style={{ fontWeight: 500 }}
+          className="font-monument text-night text-sm leading-snug mb-2.5"
+          style={{ fontWeight: 400 }}
         >
           {headline}
         </h3>
@@ -164,7 +164,7 @@ export function ProblemSection() {
           className="mt-12 pt-8"
           style={{ borderTop: "1px solid var(--border-subtle)" }}
         >
-          <p className="font-sans text-md leading-relaxed max-w-[560px]" style={{ color: "rgba(54,62,68,.5)" }}>
+          <p className="font-sans text-sm leading-relaxed max-w-[560px]" style={{ color: "rgba(54,62,68,.5)" }}>
             Our short assessment takes 3–4 minutes and helps us understand your situation
             before making any recommendations. No obligation. No sales pressure.
           </p>

@@ -44,7 +44,7 @@ export function HeroSection() {
         <h1
           className="font-monument text-frosted"
           style={{
-            fontSize: "clamp(2.6rem,5.5vw,4.8rem)",
+            fontSize: "clamp(0.6rem,3.5vw,4.8rem)",
             lineHeight: 1.06,
             letterSpacing: "-0.02em",
             marginBottom: "1.5rem",
