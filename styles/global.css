@@ -1,101 +1,260 @@
-@import 'tailwindcss';
+/*
+ * iTrust121 / iWill — Global Stylesheet
+ * ─────────────────────────────────────
+ * Tailwind CSS v4 — NO tailwind.config.js required.
+ * All configuration lives here via @theme.
+ *
+ * FONTS
+ * ─────
+ * PP Monument Extended is a commercial font — replacing with Google Fonts equivalents:
+ *   Display → Big Shoulders Display  (wide, geometric, bold — closest free match)
+ *   Body    → DM Sans               (clean, neutral, professional)
+ *
+ * COLOURS
+ * ───────
+ * Defined once in @theme. Tailwind v4 auto-generates utility classes:
+ *   --color-night    → text-night, bg-night, border-night, ring-night …
+ *   --color-charcoal → text-charcoal, bg-charcoal …
+ *   --color-cadet    → text-cadet, bg-cadet, border-cadet …
+ *   --color-frosted  → text-frosted, bg-frosted …
+ *
+ * NEVER hardcode hex in JSX. Use:
+ *   Tailwind class → text-night / bg-cadet / border-charcoal
+ *   CSS variable   → var(--color-night)   ← only for inline styles
+ *   Semantic alias → var(--text-primary)  ← for complex cases in CSS
+ */
 
-/* ============================================
-   iWill Design Tokens
-   ============================================ */
+/* Google Fonts — loaded before Tailwind so they're available immediately */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
+
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════
+   @theme  ←  Tailwind v4 config (replaces tailwind.config.js)
+   All tokens here become Tailwind utility classes.
+   ══════════════════════════════════════════════════════ */
 @theme {
-  /* Brand Colours */
-  --color-primary: #1B4D6E;          /* Deep trust blue — headers, CTAs */
-  --color-primary-dark: #133A54;     /* Hover state */
-  --color-primary-light: #E8F1F8;   /* Tinted backgrounds */
-  --color-secondary: #D4603A;        /* Warm coral — accent, signals */
-  --color-secondary-dark: #B84E2E;   /* Hover state */
-  --color-secondary-light: #FDF0EB;  /* Tinted backgrounds */
 
-  /* Neutrals */
-  --color-surface: #FFFFFF;
-  --color-surface-raised: #F8F9FB;   /* Cards, raised sections */
-  --color-surface-muted: #F1F3F5;    /* Disabled, backgrounds */
-  --color-border: #DFE3E8;
-  --color-border-strong: #C4CDD5;
-  --color-text-primary: #1A1A2E;
-  --color-text-secondary: #5C6370;
-  --color-text-muted: #8C939A;
+  /* Brand colours — iTrust121 Brand Guide §1.1 */
+  --color-night:    #131313;   /* Night          rgb(19,  19,  19)    */
+  --color-charcoal: #363E44;   /* Charcoal       rgb(54,  62,  68)    */
+  --color-cadet:    #9DB4C0;   /* Cadet Grey     rgb(157, 180, 192)   */
+  --color-frosted:  #FDFEFE;   /* Frosted White  rgb(253, 254, 254)   */
 
-  /* Feedback */
-  --color-success: #2E7D4F;
-  --color-error: #D32F2F;
-  --color-warning: #E8A838;
-
-  /* Typography */
-  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
-
-  /* Spacing scale (base 4px) */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  --spacing-4xl: 96px;
-
-  /* Border radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-full: 9999px;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
-  --shadow-focus: 0 0 0 3px rgba(27, 77, 110, 0.3);
-
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* Container */
-  --container-max: 1120px;
-  --container-narrow: 640px;
+  /* Font stacks — Brand Guide §2.0 */
+  --font-monument: "Big Shoulders Display", sans-serif;
+  --font-sans:     "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* ============================================
-   Global Base Styles
-   ============================================ */
+/* ══════════════════════════════════════════════════════
+   CSS custom properties — semantic aliases & opacity variants
+   These are for inline styles / complex CSS only.
+   For JSX always prefer Tailwind classes.
+   ══════════════════════════════════════════════════════ */
+:root {
+  /* Opacity variants */
+  --color-night-80:    rgba(19,  19,  19,  0.80);
+  --color-night-60:    rgba(19,  19,  19,  0.60);
+  --color-cadet-40:    rgba(157, 180, 192, 0.40);
+  --color-cadet-20:    rgba(157, 180, 192, 0.18);
+
+  /* Semantic text */
+  --text-primary:      #131313;
+  --text-secondary:    #363E44;
+  --text-muted:        rgba(19, 19, 19, 0.60);
+  --text-on-dark:      #FDFEFE;
+
+  /* Semantic backgrounds */
+  --bg-base:           #FDFEFE;
+  --bg-subtle:         #F4F7F9;
+  --bg-dark:           #131313;
+  --bg-cadet-wash:     rgba(157, 180, 192, 0.18);
+
+  /* Semantic borders */
+  --border-subtle:     rgba(157, 180, 192, 0.20);
+  --border-on-dark:    rgba(157, 180, 192, 0.18);
+
+  /* Transitions */
+  --t-fast:  150ms ease;
+  --t-base:  250ms ease;
+}
+
+/* ══════════════════════════════════════════════════════
+   Base — resets & document defaults
+   ══════════════════════════════════════════════════════ */
 @layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
   html {
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
   }
 
   body {
-    font-family: var(--font-sans);
-    color: var(--color-text-primary);
-    background: var(--color-surface);
-    line-height: 1.6;
+    font-family: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #131313;
+    background-color: #FDFEFE;
+    margin: 0;
+    padding: 0;
   }
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    line-height: 1.2;
-    font-weight: 600;
+  /* All headings use the display font */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0;
   }
 
-  /* Mobile tap target minimum — Stage 1 requirement */
-  button, a, [role="button"] {
-    min-height: 48px;
-    min-width: 48px;
-  }
+  p  { margin: 0; }
+  a  { color: inherit; text-decoration: none; }
 
-  /* Focus ring for accessibility */
   :focus-visible {
-    outline: none;
-    box-shadow: var(--shadow-focus);
-    border-radius: var(--radius-sm);
+    outline: 2px solid #9DB4C0;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
+
+  ::selection {
+    background-color: #9DB4C0;
+    color: #131313;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   Components — shared class utilities
+   These can be applied in JSX like any Tailwind class.
+   ══════════════════════════════════════════════════════ */
+@layer components {
+
+  /* ── Layout ─────────────────────────────────────── */
+  .container-brand {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px)  { .container-brand { padding-inline: 2.5rem; } }
+  @media (min-width: 1024px) { .container-brand { padding-inline: 4rem;   } }
+
+  .section {
+    padding-block: 5rem;
+  }
+  @media (min-width: 1024px) { .section { padding-block: 7rem; } }
+
+  /* ── Typography ─────────────────────────────────── */
+  /* Eyebrow / section label */
+  .label-eyebrow {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9DB4C0;
+  }
+
+  /* Short horizontal rule used as section prefix */
+  .divider {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background-color: #9DB4C0;
+    vertical-align: middle;
+  }
+
+  /* ── Buttons ─────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.75rem;
+    border-radius: 2px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      background-color var(--t-base),
+      color            var(--t-base),
+      border-color     var(--t-base);
+  }
+  .btn:active { transform: translateY(1px); }
+
+  /* Night fill — light backgrounds */
+  .btn-primary              { background:#131313; color:#FDFEFE; border-color:#131313; }
+  .btn-primary:hover        { background:#363E44; border-color:#363E44; }
+
+  /* Ghost — dark backgrounds */
+  .btn-ghost                { background:transparent; color:#FDFEFE; border-color:#FDFEFE; }
+  .btn-ghost:hover          { background:#FDFEFE; color:#131313; }
+
+  /* Outline — light backgrounds */
+  .btn-outline              { background:transparent; color:#131313; border-color:#131313; }
+  .btn-outline:hover        { background:#131313; color:#FDFEFE; }
+
+  /* ── Questionnaire funnel ────────────────────────── */
+  .funnel-screen {
+    min-height: 100dvh;
+    background: #131313;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .funnel-card {
+    width: 100%;
+    max-width: 600px;
+    background: #363E44;
+    border: 1px solid var(--border-on-dark);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+  }
+
+  .option-card {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border-on-dark);
+    border-radius: 2px;
+    background: transparent;
+    color: #FDFEFE;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color var(--t-fast), background var(--t-fast);
+  }
+  .option-card:hover    { border-color:#9DB4C0; background:rgba(157,180,192,0.08); }
+  .option-card.selected { border-color:#9DB4C0; background:rgba(157,180,192,0.12); }
+}
+
+/* ══════════════════════════════════════════════════════
+   Utilities — scroll animation (used by useScrollAnimation hook)
+   ══════════════════════════════════════════════════════ */
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
 }
