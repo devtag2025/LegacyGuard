@@ -17,36 +17,23 @@ export function QuestionnairePage() {
     goBack,
   } = useQuestionnaire();
 
-  // Fire funnel_start on first mount
   useEffect(() => {
     if (typeof window !== "undefined" && window.dataLayer) {
+      const p = new URLSearchParams(window.location.search);
       window.dataLayer.push({
         event:    "funnel_start",
-        source:   new URLSearchParams(window.location.search).get("utm_source") ?? "(direct)",
-        campaign: new URLSearchParams(window.location.search).get("utm_campaign") ?? "",
-        medium:   new URLSearchParams(window.location.search).get("utm_medium") ?? "",
+        source:   p.get("utm_source")   ?? "(direct)",
+        campaign: p.get("utm_campaign") ?? "",
+        medium:   p.get("utm_medium")   ?? "",
       });
     }
   }, []);
-
-  // Auto-advance when user selects an answer on non-final steps
-  // Keeps it feeling like a guided journey — not a form
-  const handleSelect = (value) => {
-    selectAnswer(value);
-    // Small delay so the selection registers visually before moving
-    if (!isLastStep) {
-      setTimeout(() => {
-        // Only auto-advance if the selection is for this step
-        goNext();
-      }, 280);
-    }
-  };
 
   if (!currentQuestion) return null;
 
   return (
     <div className="min-h-screen bg-night">
-      <div className="container-brand max-w-[600px] mx-auto px-5 pt-10 pb-16">
+      <div className="mx-auto px-5 pt-10 pb-16" style={{ maxWidth: 600 }}>
 
         <StepProgress
           currentStep={currentStep}
@@ -54,10 +41,12 @@ export function QuestionnairePage() {
           progress={progress}
         />
 
+        {/* key forces remount on each step → animation replays cleanly */}
         <QuestionStep
+          key={currentStep}
           question={currentQuestion}
           selectedAnswer={currentAnswer}
-          onSelect={handleSelect}
+          onSelect={selectAnswer}
           onNext={goNext}
           onBack={goBack}
           isLastStep={isLastStep}
