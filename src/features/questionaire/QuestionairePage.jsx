@@ -1,12 +1,9 @@
-// src/features/questionnaire/QuestionnairePage.jsx
-// Module 8.1 — Step container. Renders StepProgress + QuestionStep.
-// Fires funnel_start GA4 event on mount.
 
 import { useEffect } from "react";
-import { StepProgress } from "./StepProgress";
-import { QuestionStep } from "../../components/questionaire/QuestionStep";
-import { useQuestionnaire } from "./useQuestionnaire";
-import { QUESTIONS } from "./questions.config";
+import { StepProgress } from "@/components/questionaire/StepProgess";
+import { QuestionStep } from "@/components/questionaire/QuestionStep";
+import { useQuestionnaire } from "@/hooks/useQuestionaire";
+import { QUESTIONS } from "@/config/questions.config";
 
 export function QuestionnairePage() {
   const {

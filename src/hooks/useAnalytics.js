@@ -1,6 +1,6 @@
 
 import { useCallback } from "react";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent } from "@/libs/analytics";
 
 export function useAnalytics() {
   const track = useCallback((eventName, params = {}) => {

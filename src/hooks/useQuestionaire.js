@@ -1,11 +1,9 @@
-// src/features/questionnaire/useQuestionnaire.js
-// Step navigation, answer dispatch, GA4 tracking, and classification trigger.
 
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQuestionnaireStore } from '@/store/useQuestionnaireStore';
-import { classify } from '@/lib/classificationEngine';
-import { QUESTIONS } from './questions.config';
+import { useNavigate } from 'react-router';
+import { useQuestionnaireStore } from '@/store/useQuestionaireStore';
+import { classify } from '@/utils/classificationEngine';
+import { QUESTIONS } from '@/config/questions.config';
 
 export function useQuestionnaire() {
   const navigate = useNavigate();
