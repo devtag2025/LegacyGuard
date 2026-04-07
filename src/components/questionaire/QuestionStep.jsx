@@ -2,9 +2,8 @@
 import { useRef, useState, useEffect } from "react";
 import { OptionCard } from "./OptionCard";
 
-const MOBILE_DELAY = 1200;
+const MOBILE_DELAY = 600
 
-// Detect touch once at module level — stable, never stale
 const IS_TOUCH_DEVICE =
   typeof window !== "undefined" &&
   (navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches);
