@@ -132,7 +132,7 @@ export function EducationSection() {
                 className="font-sans text-cadet text-sm hover:text-frosted transition-colors"
                 data-track="edu-book"
               >
-                Book a free introductory call →
+                Speak to an adviser →
               </a>
             </div>
           </div>
