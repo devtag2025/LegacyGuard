@@ -1,6 +1,3 @@
-// src/features/questionnaire/OptionCard.jsx
-// Selected state: liquid glass effect (Apple iOS style) on desktop.
-// Mobile selected state: solid cadet fill for clarity under countdown.
 
 import { useRef } from "react";
 
@@ -8,7 +5,6 @@ export function OptionCard({ option, isSelected, onSelect, index = 0, isMobileMo
   const cardRef = useRef(null);
 
   const handleClick = (e) => {
-    // Ripple
     const card = cardRef.current;
     if (card) {
       const rect = card.getBoundingClientRect();
@@ -28,7 +24,6 @@ export function OptionCard({ option, isSelected, onSelect, index = 0, isMobileMo
     onSelect(option.value);
   };
 
-  // ── Liquid glass styles (desktop selected) ──────────────────────────────
   const liquidGlass = {
     background:     "rgba(157,180,192,0.08)",
     backdropFilter: "blur(14px) saturate(160%)",
