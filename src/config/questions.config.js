@@ -1,6 +1,3 @@
-// src/features/questionnaire/questions.config.js
-// Blueprint §4 — Questionnaire Structure & Decision Logic
-// 7-step diagnostic engine. Each question qualifies the user and triggers reflection.
 
 export const QUESTIONS = [
   {

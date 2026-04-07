@@ -1,117 +1,76 @@
 
+import { ROUTES } from "@/libs/constants";
+
 export function CtaSection() {
   return (
-    <section
-      id="get-started"
-      className="section bg-charcoal"
-      aria-labelledby="cta-heading"
-    >
+    <section className="section bg-charcoal" aria-labelledby="cta-heading">
       <div className="container-brand">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="divider" aria-hidden="true" />
-              <span className="label-eyebrow">Get started</span>
-            </div>
-            <h2
-              id="cta-heading"
-              className="font-monument text-night mb-8"
-              style={{ fontSize: "clamp(1.9rem,3.5vw,3rem)", lineHeight: 1.1 }}
+        <div className="max-w-[640px]">
+
+          <div className="flex items-center gap-3 mb-8">
+            <span className="divider" aria-hidden="true" />
+            <span className="label-eyebrow text-cadet/60">Get started</span>
+          </div>
+
+          <h2
+            id="cta-heading"
+            className="font-monument text-frosted mb-5"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)", lineHeight: 1.12 }}
+          >
+            Start by understanding
+            <br />
+            <span className="text-cadet">what your situation requires.</span>
+          </h2>
+
+         
+          <p
+            className="font-sans text-cadet/60 text-[15px] leading-relaxed mb-4 max-w-[480px]"
+          >
+            Our 3-minute assessment gives you clarity before you commit to anything.
+          </p>
+
+          <p
+            className="font-sans text-cadet/50 text-[14px] leading-relaxed mb-10 max-w-[480px]"
+          >
+            No personal details required to begin. No obligation to proceed.
+          </p>
+
+          {/* CTAs — exact client copy */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <a
+              href={ROUTES.ASSESSMENT}
+              className="btn btn-primary"
+              data-track="cta-bottom-primary"
+              style={{ whiteSpace: "nowrap" }}
             >
-              The right plan starts<br />with the right{" "}
-              <span className="text-cadet">questions.</span>
-            </h2>
-            <p className="font-sans text-base leading-relaxed max-w-[460px] text-frosted">
-              Our assessment helps identify what your estate actually requires — before
-              suggesting any service or product. No pressure, no obligation, no commitment.
-            </p>
+              Start Your 3-Minute Assessment
+            </a>
+            <a
+              href={ROUTES.BOOK}
+              className="btn btn-ghost"
+              data-track="cta-bottom-adviser"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              Speak to an Adviser
+            </a>
           </div>
 
-          <div className="bg-night rounded-sm overflow-hidden" style={{ border: "1px solid rgba(54,62,68,.3)" }}>
-            <div
-              aria-hidden="true"
-              style={{ height: 3, background: "linear-gradient(to right,rgba(157,180,192,.5),var(--color-cadet),rgba(157,180,192,.5))" }}
-            />
+       
+          <p
+            className="font-sans text-sm"
+            style={{ color: "rgba(157,180,192,0.45)" }}
+          >
+            Prefer a conversation first?{" "}
+            <a
+              href={ROUTES.BOOK}
+              className="hover:text-cadet transition-colors underline underline-offset-2"
+              style={{ color: "rgba(157,180,192,0.6)" }}
+              data-track="cta-bottom-adviser-inline"
+            >
+              Speak to an Adviser — No Obligation, Just Clarity
+            </a>
+          </p>
 
-            <div className="p-10 flex flex-col gap-8">
-              {/* Path 1 */}
-              <div className="flex flex-col gap-4">
-                <span className="label-eyebrow" style={{ color: "rgba(157,180,192,.65)" }}>
-                  Option 1 — Start online
-                </span>
-                <h3 className="font-monument text-frosted text-xl leading-snug" style={{ fontWeight: 400 }}>
-                  Begin your assessment
-                </h3>
-                <p className="font-sans text-sm leading-relaxed" style={{ color: "rgba(157,180,192,.7)" }}>
-                  A 3–4 minute guided assessment. We&apos;ll tell you clearly what your situation
-                  requires and why — before recommending anything.
-                </p>
-                <a href="/assessment" className="btn btn-ghost w-full" data-track="cta-assessment">
-                  Start your assessment →
-                </a>
-              </div>
-
-              {/* Divider */}
-              <div className="relative" style={{ borderTop: "1px solid rgba(157,180,192,.12)" }}>
-                <span
-                  className="absolute font-sans text-xs tracking-wider"
-                  style={{
-                    top: "50%", left: "50%",
-                    transform: "translate(-50%,-50%)",
-                    background: "var(--color-night)",
-                    padding: "0 12px",
-                    color: "rgba(157,180,192,.4)",
-                  }}
-                >
-                  or
-                </span>
-              </div>
-
-              {/* Path 2 */}
-              <div className="flex flex-col gap-4">
-                <span className="label-eyebrow" style={{ color: "rgba(157,180,192,.65)" }}>
-                  Option 2 — Speak to us
-                </span>
-                <h3 className="font-monument text-frosted text-xl leading-snug" style={{ fontWeight: 400 }}>
-                  Book an introductory call
-                </h3>
-                <p className="font-sans text-sm leading-relaxed" style={{ color: "rgba(157,180,192,.7)" }}>
-                  Prefer to speak to someone first? Book a no-obligation call with one of our
-                  advisers. Phone or Zoom — whichever you prefer.
-                </p>
-
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Phone call", href: "/book?medium=phone" },
-                    { label: "Zoom call",  href: "/book?medium=zoom"  },
-                  ].map((btn) => (
-                    <a
-                      key={btn.label}
-                      href={btn.href}
-                      className="font-sans text-xs tracking-wider text-cadet text-center py-3 rounded-sm transition-colors"
-                      style={{
-                        border: "1.5px solid rgba(157,180,192,.3)",
-                        textTransform: "uppercase",
-                        letterSpacing: ".08em",
-                      }}
-                      data-track={`cta-${btn.label.toLowerCase().replace(" ", "-")}`}
-                    >
-                      {btn.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Reassurance */}
-              <p
-                className="font-sans text-xs text-center leading-snug"
-                style={{ color: "rgba(157,180,192,.38)" }}
-              >
-                No obligation. No personal details required to start the assessment.
-                All consultations are confidential.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
