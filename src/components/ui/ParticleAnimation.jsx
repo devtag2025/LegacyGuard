@@ -1,11 +1,5 @@
-// src/components/ui/ParticleAnimation.jsx
-// Particle animation using p5.js + GSAP — loaded dynamically, no install needed.
-// Converted from TypeScript to plain JS to match project convention.
-// Colors use the iTrust121 brand palette: cadet, frosted, night.
 
 import { useEffect, useRef } from "react";
-
-// Brand palette mapped to particle theme
 const PARTICLE_THEME = [
   "#9DB4C0",               // cadet — primary
   "rgba(157,180,192,0.5)", // cadet muted
@@ -24,7 +18,6 @@ export function ParticleAnimation() {
     const loadScripts = async () => {
       if (typeof window === "undefined") return;
 
-      // Load p5.js if not already present
       if (!window.p5) {
         await new Promise((resolve, reject) => {
           const s = document.createElement("script");
@@ -34,8 +27,6 @@ export function ParticleAnimation() {
           document.head.appendChild(s);
         });
       }
-
-      // Load GSAP if not already present
       if (!window.gsap) {
         await new Promise((resolve, reject) => {
           const s = document.createElement("script");
