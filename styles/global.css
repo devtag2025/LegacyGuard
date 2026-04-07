@@ -1,17 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
 
 @import "tailwindcss";
-/*
 
-* iTrust121 / iWill — Global Stylesheet
-* ─────────────────────────────────────
-* Tailwind CSS v4 — NO tailwind.config.js required.
-* All configuration lives here via @theme.
-  */
-
-/* ─────────────────────────────────────
-CUSTOM FONT — PP Monument Extended
-───────────────────────────────────── */
 @font-face {
 font-family: 'PP Monument Extended';
 src: url('/fonts/PPMonumentExtended-Light.otf') format('opentype');
@@ -33,12 +23,6 @@ font-weight: 900;
 font-style: normal;
 }
 
-/* Keep DM Sans for body text */
-
-
-/* ══════════════════════════════════════════════════════
-@theme
-══════════════════════════════════════════════════════ */
 @theme {
 
 --color-night:    #131313;

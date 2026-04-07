@@ -3,8 +3,7 @@ export function CtaSection() {
   return (
     <section
       id="get-started"
-      className="section"
-      style={{ background: "var(--bg-cadet-wash)" }}
+      className="section bg-charcoal"
       aria-labelledby="cta-heading"
     >
       <div className="container-brand">
@@ -20,9 +19,9 @@ export function CtaSection() {
               style={{ fontSize: "clamp(1.9rem,3.5vw,3rem)", lineHeight: 1.1 }}
             >
               The right plan starts<br />with the right{" "}
-              <span style={{ color: "rgba(54,62,68,.5)" }}>questions.</span>
+              <span className="text-cadet">questions.</span>
             </h2>
-            <p className="font-sans text-base leading-relaxed max-w-[460px]" style={{ color: "rgba(54,62,68,.65)" }}>
+            <p className="font-sans text-base leading-relaxed max-w-[460px] text-frosted">
               Our assessment helps identify what your estate actually requires — before
               suggesting any service or product. No pressure, no obligation, no commitment.
             </p>

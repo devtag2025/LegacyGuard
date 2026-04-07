@@ -19,10 +19,10 @@ const COLUMNS = [
   {
     heading: "Company",
     links: [
-      { label: "About iTrust121", href: "/about"   },
+      { label: "About iTrust121", href: "/about"        },
       { label: "How It Works",    href: "#how-it-works" },
-      { label: "Our Advisers",    href: "/team"    },
-      { label: "Contact Us",      href: "/contact" },
+      { label: "Our Advisers",    href: "/team"         },
+      { label: "Contact Us",      href: "/contact"      },
     ],
   },
   {

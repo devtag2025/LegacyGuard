@@ -1,10 +1,3 @@
-/**
- * ProblemSection — Landing Page
- * File: src/features/landing/ProblemSection.jsx
- *
- * Real-life planning triggers for homeowners aged 40–75.
- * Blueprint §2 — Targeting: property, dependents, retirement, family change.
- */
 
 const TRIGGERS = [
   {

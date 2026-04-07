@@ -1,59 +1,28 @@
-import { useEffect } from "react";
-import Header from "@/components/shared/header/Header";
-import Footer from "@/components/shared/footer/Footer";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { SEOHead } from "@/components/shared/seohead/SeoHead";
 import HeroSection from "@/components/landing/HeroSection";
-import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import { EducationSection } from "@/components/landing/EducationSection";
-import { CtaSection } from "@/components/landing/CtaSection";
-import { TestimonialsSection } from "@/components/landing/TestimonialSection";
+import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { TrustSignalsSection } from "@/components/landing/TrustSignalSection";
-function useScrollAnimation() {
-  useEffect(() => {
-    const els = document.querySelectorAll(".animate-on-scroll");
-    if (!els.length || !("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("in-view"));
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-}
+import { TestimonialsSection } from "@/components/landing/TestimonialSection";
+import { CtaSection } from "@/components/landing/CtaSection";
 
 export function LandingPage() {
-  useScrollAnimation();
-
   return (
-    <>
-      <Header transparent={true} />
-
-      <main id="main-content" tabIndex={-1}>
-
-        
-        
-        <HeroSection />
-        <ProblemSection />
-        <EducationSection />
-        <HowItWorksSection />
-        <TrustSignalsSection />
-        <TestimonialsSection />
-        <CtaSection />
-      </main>
-
-      <Footer />
-    </>
+    <PageLayout>
+      <SEOHead
+        title="iTrust121 — Make Sure Your Will Does What You Intend"
+        description="A 3-minute assessment to understand what your estate actually requires. Wills, LPAs, and estate planning for UK homeowners and families."
+        canonical="https://itrust121.co.uk"
+      />
+      <HeroSection />
+      <ProblemSection />
+      <EducationSection />
+      <HowItWorksSection />
+      <TrustSignalsSection />
+      <TestimonialsSection />
+      <CtaSection />
+    </PageLayout>
   );
 }
-
-export default LandingPage;
