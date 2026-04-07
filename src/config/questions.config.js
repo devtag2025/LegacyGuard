@@ -1,0 +1,89 @@
+// src/features/questionnaire/questions.config.js
+// Blueprint §4 — Questionnaire Structure & Decision Logic
+// 7-step diagnostic engine. Each question qualifies the user and triggers reflection.
+
+export const QUESTIONS = [
+  {
+    id: 1,
+    key: "relationshipStatus",
+    heading: "What is your relationship status?",
+    sub: "This helps us understand how your estate may need to be structured.",
+    options: [
+      { value: "single",           label: "Single" },
+      { value: "married",          label: "Married or partnered" },
+      { value: "separated",        label: "Separated", hint: "Including divorced" },
+      { value: "widowed_remarried",label: "Widowed or remarried" },
+    ],
+  },
+  {
+    id: 2,
+    key: "children",
+    heading: "Do you have children or dependents?",
+    sub: "Including stepchildren or children from a previous relationship.",
+    options: [
+      { value: "no",            label: "No" },
+      { value: "yes_current",   label: "Yes, with current partner" },
+      { value: "yes_previous",  label: "Yes, from a previous relationship" },
+      { value: "yes_both",      label: "Yes, both" },
+    ],
+  },
+  {
+    id: 3,
+    key: "property",
+    heading: "Do you own property?",
+    sub: "Any property ownership is one of the most significant factors in estate planning.",
+    options: [
+      { value: "no",            label: "No, I rent or live with family" },
+      { value: "yes_outright",  label: "Yes, I own outright" },
+      { value: "yes_mortgage",  label: "Yes, with a mortgage" },
+      { value: "yes_jointly",   label: "Yes, jointly with someone" },
+    ],
+  },
+  {
+    id: 4,
+    key: "assets",
+    heading: "How would you describe your financial situation?",
+    sub: "A broad sense — this helps us understand whether inheritance tax planning may be relevant.",
+    options: [
+      { value: "starting_out", label: "Just starting out" },
+      { value: "comfortable",  label: "Comfortable" },
+      { value: "established",  label: "Established", hint: "Some savings, pension, or investments" },
+      { value: "significant",  label: "Significant assets", hint: "Property, business, or portfolio" },
+    ],
+  },
+  {
+    id: 5,
+    key: "familyComplexity",
+    heading: "Is there anything in your family situation that feels complicated?",
+    sub: "Blended families, estrangements, dependents with additional needs — all of these matter.",
+    options: [
+      { value: "straightforward",  label: "No, fairly straightforward" },
+      { value: "some_dynamics",    label: "There are some family dynamics" },
+      { value: "quite_complex",    label: "Yes, it's quite complex" },
+      { value: "not_sure",         label: "Not sure" },
+    ],
+  },
+  {
+    id: 6,
+    key: "priority",
+    heading: "What matters most to you when sorting your will?",
+    sub: "There's no right answer — this helps us understand what outcome you're looking for.",
+    options: [
+      { value: "simple_affordable", label: "Keeping it simple and affordable" },
+      { value: "family_protected",  label: "Making sure my family is properly protected" },
+      { value: "assets_intended",   label: "Ensuring assets go exactly where I intend" },
+      { value: "proper_advice",     label: "Getting proper advice before I decide" },
+    ],
+  },
+  {
+    id: 7,
+    key: "lpaAwareness",
+    heading: "Have you considered who would manage your affairs if you couldn't?",
+    sub: "This is something many people overlook — but it can be as important as the will itself.",
+    options: [
+      { value: "no_hadnt",  label: "No, I hadn't thought about it" },
+      { value: "yes_plan",  label: "Yes, I have someone in mind" },
+      { value: "not_sure",  label: "Not sure what that involves" },
+    ],
+  },
+];

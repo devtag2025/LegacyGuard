@@ -1,3 +1,10 @@
+/**
+ * Header — Shared Layout Component
+ * File: src/components/shared/Header.jsx
+ *
+ * Client-provided implementation. Fixed, transparent-to-opaque on scroll.
+ * Mobile drawer with overlay. Logo uses /logo.png from public folder.
+ */
 
 import { useState, useEffect, useCallback } from "react";
 
@@ -14,7 +21,7 @@ function Logo() {
         className="font-monument text-frosted text-sm tracking-widest uppercase leading-none
                    hover:text-cadet transition-colors duration-200"
       >
-<img src="/logo.png" alt="logo" height={100} width={60} />
+        <img src="/logo.png" alt="logo" height={100} width={60} />
       </span>
     </a>
   );
@@ -55,7 +62,6 @@ function MobileDrawer({ isOpen, onClose }) {
             aria-label="Close menu"
             className="text-frosted hover:text-cadet transition-colors p-1"
           >
-            {/* X icon */}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
