@@ -71,7 +71,7 @@ export function HeroSection() {
         <h1
           className="
             font-monument text-frosted
-            text-[1.4rem] pt-16 lg:mt-16 sm:text-[2.6rem] md:text-[3.5rem] lg:text-[4.2rem]
+            text-[1.7rem] pt-16 lg:mt-16 sm:text-[2.6rem] md:text-[3.5rem] lg:text-[4.2rem]
             leading-[1.1] tracking-[-0.02em] mb-6
           "
         >
