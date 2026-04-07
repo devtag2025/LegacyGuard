@@ -11,7 +11,7 @@ export function HeroSection() {
     <section
       id="hero"
       className="relative bg-night flex flex-col justify-end overflow-hidden"
-      style={{ minHeight: '92vh', paddingBottom: '6rem' }}
+      style={{ minHeight: '20vh', paddingBottom: '6rem' }}
       aria-label="Page introduction"
     >
       {/* Grid texture */}
