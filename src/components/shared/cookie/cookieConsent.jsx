@@ -10,7 +10,6 @@ export function CookieConsent() {
   useEffect(() => {
     let consent = null;
     try { consent = localStorage.getItem(CONSENT_KEY); } catch {}
-
     if (consent === "accepted" && !DEV_FORCE) {
       fireConsent();
       return;
@@ -20,7 +19,7 @@ export function CookieConsent() {
       if (consent === "declined" && !DEV_FORCE) {
         setPhase("icon"); 
       } else {
-        setPhase("panel");
+        setPhase("panel"); 
       }
     }, 1000);
 
@@ -49,7 +48,6 @@ export function CookieConsent() {
   }
 
   function handleClose() {
-   
     setPhase("icon");
   }
 
@@ -74,7 +72,7 @@ export function CookieConsent() {
         }
       `}</style>
 
-    
+      {/* ── Floating cookie icon (shown when panel is closed) ── */}
       {phase === "icon" && (
         <button
           type="button"
@@ -92,12 +90,16 @@ export function CookieConsent() {
         >
           <CookieIcon size={22} />
 
-       
-        
+          {/* Notification dot */}
+          <span
+            className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2"
+            style={{ background: "#9DB4C0", borderColor: "#131313" }}
+            aria-hidden="true"
+          />
         </button>
       )}
 
-    
+      {/* ── Consent panel ── */}
       {phase === "panel" && (
         <div
           className="fixed bottom-6 right-6 z-10 w-[300px] sm:w-[320px] rounded-sm overflow-hidden"
@@ -106,7 +108,7 @@ export function CookieConsent() {
             border:          "1px solid rgba(157,180,192,0.20)",
             boxShadow:       "0 8px 40px rgba(0,0,0,0.45)",
             animation:       "ck-panel-in 0.38s cubic-bezier(0.22,1,0.36,1) forwards",
-            transformOrigin: "bottom left",
+            transformOrigin: "bottom right",
           }}
         >
           {/* Header */}
@@ -202,7 +204,7 @@ export function CookieConsent() {
             className="px-5 py-3 text-center"
             style={{ borderTop: "1px solid rgba(157,180,192,0.08)" }}
           >
-            <p className="font-sans text-xs text-frosted" >
+            <p className="font-sans" style={{ color: "rgba(157,180,192,0.28)", fontSize: "0.67rem" }}>
               iTrust121 · UK GDPR compliant
             </p>
           </div>
@@ -212,22 +214,15 @@ export function CookieConsent() {
   );
 }
 
-
 function CookieIcon({ size = 22 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10"
-        stroke="#9DB4C0" strokeWidth="1.4"
-        fill="rgba(157,180,192,0.08)" />
-      <path
-        d="M18 8.5c-1 0-1.8-.8-1.8-1.8 0-.4.1-.8.4-1.1A9.9 9.9 0 0 0 12 4C7.6 4 4 7.6 4 12s3.6 8 8 8 8-3.6 8-8c0-1.1-.2-2.1-.6-3-.3.3-.8.5-1.4.5z"
-        fill="rgba(157,180,192,0.12)"
-        stroke="#9DB4C0" strokeWidth="1.2" strokeLinejoin="round"
-      />
-      <circle cx="9"  cy="10"   r="1"   fill="#9DB4C0" opacity="0.7" />
-      <circle cx="13" cy="14"   r="1"   fill="#9DB4C0" opacity="0.7" />
-      <circle cx="10" cy="14.5" r="0.7" fill="#9DB4C0" opacity="0.5" />
-      <circle cx="14" cy="9.5"  r="0.7" fill="#9DB4C0" opacity="0.5" />
-    </svg>
+    <img
+      src="/cookie.svg"
+      alt=""
+      aria-hidden="true"
+      width={size}
+      height={size}
+      style={{ display: "block", objectFit: "contain" }}
+    />
   );
 }
