@@ -1,10 +1,3 @@
-/**
- * HeroSection — Landing Page
- * File: src/features/landing/HeroSection.jsx
- *
- * Problem-led headline. No price. No "free will" language.
- * Single CTA: "Start your assessment"
- */
 
 export function HeroSection() {
   return (
