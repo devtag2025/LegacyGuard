@@ -50,7 +50,7 @@ export function HeroSection() {
           width:  "60%",
           height: "85%",
           background:
-            "radial-gradient(ellipse at center,rgba(157,180,192,.09) 0%,transparent 65%)",
+            "radial-gradient(ellipse at center,rgba(157,180,192,.09) 0%,transparent 5%)",
         }}
       />
 
