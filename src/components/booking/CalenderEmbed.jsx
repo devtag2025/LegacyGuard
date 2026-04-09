@@ -1,43 +1,5 @@
-
 import { useEffect, useRef, useState } from "react";
 
-const CALENDLY_DARK_CSS = `
-  /* ── Overlay background ── */
-  .calendly-overlay {
-    background-color: rgba(19, 19, 19, 0.88) !important;
-    backdrop-filter: blur(6px) !important;
-    -webkit-backdrop-filter: blur(6px) !important;
-  }
-
-  /* ── Popup card ── */
-  .calendly-popup {
-    border-radius: 4px !important;
-    overflow: hidden !important;
-    box-shadow: 0 32px 100px rgba(0,0,0,0.7) !important;
-  }
-
-  /* ── Hide ALL scrollbars inside the popup ── */
-  .calendly-popup *::-webkit-scrollbar { display: none !important; }
-  .calendly-popup * { -ms-overflow-style: none !important; scrollbar-width: none !important; }
-  .calendly-popup iframe { scrollbar-width: none !important; }
-
-  /* ── Close button ── */
-  .calendly-popup-close {
-    background: rgba(157,180,192,0.12) !important;
-    border-radius: 50% !important;
-  }
-  .calendly-popup-close svg path {
-    fill: #9DB4C0 !important;
-  }
-
-  /* ── Hide body scrollbar when popup is open ── */
-  body.calendly-open {
-    overflow: hidden !important;
-    padding-right: var(--scrollbar-width, 0px) !important;
-  }
-`;
-
-// Measure the scrollbar width so layout doesn't shift when we hide it
 function getScrollbarWidth() {
   const outer = document.createElement("div");
   outer.style.cssText = "visibility:hidden;overflow:scroll;position:absolute;top:-9999px";
@@ -52,20 +14,14 @@ function getScrollbarWidth() {
 function lockBodyScroll() {
   const width = getScrollbarWidth();
   document.documentElement.style.setProperty("--scrollbar-width", `${width}px`);
-  document.body.classList.add("calendly-open");
+  document.body.style.overflow = "hidden";
+  document.body.style.paddingRight = `${width}px`;
 }
 
 function unlockBodyScroll() {
-  document.body.classList.remove("calendly-open");
+  document.body.style.overflow = "";
+  document.body.style.paddingRight = "";
   document.documentElement.style.removeProperty("--scrollbar-width");
-}
-
-function injectCalendlyDarkCSS() {
-  if (document.getElementById("calendly-dark-css")) return;
-  const style = document.createElement("style");
-  style.id = "calendly-dark-css";
-  style.textContent = CALENDLY_DARK_CSS;
-  document.head.appendChild(style);
 }
 
 export function CalendarEmbed({ calendlyUrl, onBooked }) {
@@ -75,7 +31,7 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
   const [error,       setError]       = useState(false);
   const listenerAdded                 = useRef(false);
 
-  // ── Load Calendly script + CSS ──────────────────────────────────────────
+  // ── Load Calendly script ──────────────────────────────────────────────────
   useEffect(() => {
     if (!calendlyUrl) return;
 
@@ -101,7 +57,7 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
     document.head.appendChild(script);
   }, [calendlyUrl]);
 
-  // ── Listen for booking confirmed ────────────────────────────────────────
+  // ── Listen for booking confirmed ──────────────────────────────────────────
   useEffect(() => {
     if (listenerAdded.current) return;
     listenerAdded.current = true;
@@ -110,6 +66,7 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
       if (!e.data || typeof e.data !== "object") return;
       if (e.data.event === "calendly.event_scheduled") {
         unlockBodyScroll();
+        removeCloseBtn();
         setBooked(true);
         setPopupOpen(false);
         if (onBooked) onBooked(e.data.payload);
@@ -123,39 +80,99 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
     };
   }, [onBooked]);
 
-  // ── Open Calendly popup with brand colours ──────────────────────────────
+  // ── Remove our custom close button ───────────────────────────────────────
+  function removeCloseBtn() {
+    const existing = document.getElementById("ck-close-btn");
+    if (existing) existing.remove();
+  }
+
+  // ── Inject our custom close button ───────────────────────────────────────
+  function injectCloseBtn() {
+    removeCloseBtn();
+
+    const btn = document.createElement("button");
+    btn.id = "ck-close-btn";
+    btn.setAttribute("aria-label", "Close booking calendar");
+    btn.style.cssText = `
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 999999;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      transition: background 0.15s;
+    `;
+    btn.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 3L3 11M3 3l8 8" stroke="#131313" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    `;
+
+    btn.onmouseenter = () => { btn.style.background = "#f0f0f0"; };
+    btn.onmouseleave = () => { btn.style.background = "#FFFFFF"; };
+
+    btn.onclick = () => {
+      // Try native Calendly close first
+      const nativeClose = document.querySelector(".calendly-popup-close");
+      if (nativeClose) {
+        nativeClose.click();
+      } else {
+        const overlay = document.querySelector(".calendly-overlay");
+        if (overlay) overlay.remove();
+      }
+      unlockBodyScroll();
+      setPopupOpen(false);
+      removeCloseBtn();
+    };
+
+    document.body.appendChild(btn);
+
+    // Auto-remove when Calendly overlay disappears
+    const obs = new MutationObserver(() => {
+      if (!document.querySelector(".calendly-overlay")) {
+        removeCloseBtn();
+        unlockBodyScroll();
+        setPopupOpen(false);
+        obs.disconnect();
+      }
+    });
+    obs.observe(document.body, { childList: true });
+  }
+
+  // ── Open popup ────────────────────────────────────────────────────────────
   function openPopup() {
     if (!window.Calendly || !calendlyUrl) return;
 
-    injectCalendlyDarkCSS();
     lockBodyScroll();
     setPopupOpen(true);
 
-    let url = calendlyUrl;
-    try {
-      const u = new URL(calendlyUrl);
-      u.searchParams.set("background_color", "131313");
-      u.searchParams.set("text_color",       "FDFEFE");
-      u.searchParams.set("primary_color",    "9DB4C0");
-      u.searchParams.set("hide_gdpr_banner", "1");
-      url = u.toString();
-    } catch {}
+    // Free Calendly — no colour params, use URL as-is
+    window.Calendly.initPopupWidget({ url: calendlyUrl });
 
-    window.Calendly.initPopupWidget({ url });
+    // Inject our custom close button after popup mounts
+    setTimeout(injectCloseBtn, 600);
 
-    // Calendly doesn't expose a close callback — watch for overlay removal
+    // Watch for overlay removal (user closed popup)
     const observer = new MutationObserver(() => {
-      const overlay = document.querySelector(".calendly-overlay");
-      if (!overlay) {
+      if (!document.querySelector(".calendly-overlay")) {
         unlockBodyScroll();
         setPopupOpen(false);
+        removeCloseBtn();
         observer.disconnect();
       }
     });
     observer.observe(document.body, { childList: true, subtree: false });
   }
 
-  // ── No URL configured ───────────────────────────────────────────────────
+  // ── No URL configured ─────────────────────────────────────────────────────
   if (!calendlyUrl) {
     return (
       <div className="w-full flex flex-col items-center justify-center rounded-sm border border-cadet/15 bg-cadet/4 py-16 px-6 text-center">
@@ -177,7 +194,7 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
     );
   }
 
-  // ── Booking confirmed state ─────────────────────────────────────────────
+  // ── Booking confirmed ─────────────────────────────────────────────────────
   if (booked) {
     return (
       <div className="w-full flex flex-col items-center justify-center rounded-sm border border-cadet/15 bg-cadet/4 py-16 px-6 text-center">
@@ -193,7 +210,7 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
     );
   }
 
-  // ── Main booking card ───────────────────────────────────────────────────
+  // ── Main booking card ─────────────────────────────────────────────────────
   return (
     <div className="w-full rounded-sm border border-cadet/15 overflow-hidden">
 
@@ -245,7 +262,6 @@ export function CalendarEmbed({ calendlyUrl, onBooked }) {
             }
           `}
         >
-          {/* Calendar icon */}
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
             <rect x="3" y="4" width="18" height="18" rx="2"/>
