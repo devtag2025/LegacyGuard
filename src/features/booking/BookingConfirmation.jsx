@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 export function BookingConfirmation() {
   const { state } = useLocation();
   const format = state?.format ?? 'phone';
-  const isZoom = format === 'zoom';
+  const isMeet = format === "meet";
 
   useEffect(() => {
     if (typeof window !== 'undefined' && Array.isArray(window.dataLayer)) {
@@ -44,8 +44,8 @@ export function BookingConfirmation() {
 
         {/* Subtext — format-aware */}
         <p className="font-sans text-cadet/60 text-[15px] leading-relaxed mb-10">
-          {isZoom
-            ? "A Zoom link will be sent to your email ahead of the call. Your adviser will review what you've shared beforehand — so there's no need to repeat yourself."
+          {isMeet
+            ? "A Google Meet link will be sent to your email ahead of the call. Your adviser will review what you've shared beforehand — so there's no need to repeat yourself."
             : "You'll receive a confirmation by email shortly. Your adviser will review what you've shared before the call — so there's no need to repeat yourself."}
         </p>
 
