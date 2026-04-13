@@ -1,7 +1,3 @@
-// src/features/landing/TestimonialsSection.jsx
-// Client image 2 (couple dancing) shown as a proper <img> element.
-// No backgroundImage style props.
-
 const TESTIMONIALS = [
   {
     quote:
@@ -28,83 +24,122 @@ const TESTIMONIALS = [
 
 export function TestimonialsSection() {
   return (
-    <section className="section bg-night" aria-labelledby="testimonials-heading">
-      <div className="container-brand">
-        {/* Image + heading row */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:gap-16 mb-14">
-          {/* Client image 2 — couple, left side */}
-          <div className="hidden lg:block lg:flex-shrink-0 lg:w-[340px] relative rounded-sm overflow-hidden">
-            <img
-              src="/public/images/hero-couple.png"
-              alt="Couple at home — estate planning gives families clarity and confidence"
-              className="w-full h-[260px] object-cover object-center"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(to right, transparent 60%, rgba(19,19,19,0.8) 100%)',
-              }}
-              aria-hidden="true"
-            />
+    <section className="bg-night overflow-hidden" aria-labelledby="testimonials-heading">
+      <div className="flex flex-col lg:flex-row min-h-[720px]">
+        {/* ── LEFT — Full-height image with overlays ── */}
+        <div className="relative lg:w-[44%] h-[320px] lg:h-auto flex-shrink-0 overflow-hidden">
+          <img
+            src="/public/images/hero-couple.png"
+            alt="Couple at home — estate planning gives families clarity and confidence"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+
+          {/* Night overlay 0.8 opacity */}
+          <div className="absolute inset-0 bg-night opacity-60" aria-hidden="true" />
+
+          {/* Right-edge fade — bleeds into content */}
+          <div
+            className="absolute inset-0 hidden lg:block"
+            style={{
+              background:
+                'linear-gradient(to right, transparent 95%, rgba(19,19,19,1) 100%)',
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Bottom fade — mobile only */}
+          <div
+            className="absolute inset-0 lg:hidden"
+            style={{
+              background: 'linear-gradient(to top, rgba(19,19,19,1) 0%, transparent 50%)',
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Large decorative quote mark on the image */}
+          <div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            aria-hidden="true"
+          >
+            <span
+              className="font-monument text-cadet/[0.08] select-none"
+              style={{ fontSize: 'clamp(7rem,16vw,13rem)', lineHeight: 1 }}
+            >
+              &ldquo;
+            </span>
           </div>
 
-          {/* Heading */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
+          {/* Label on the image */}
+          <div className="absolute top-20 left-8 hidden lg:block">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="block w-5 h-px bg-cadet opacity-40" aria-hidden="true" />
+              <span className="label-eyebrow text-cadet/55">Real experiences</span>
+            </div>
+            <p
+              className="font-monument text-frosted/60 leading-snug"
+              style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', fontWeight: 300 }}
+            >
+              What people realised
+              <br />
+              <span className="text-cadet/80">after starting.</span>
+            </p>
+          </div>
+        </div>
+
+        {/* ── RIGHT — Heading + testimonials ── */}
+        <div className="flex flex-col justify-center lg:w-[56%] px-6 md:px-12 xl:px-16 py-14 lg:py-20">
+          {/* Mobile heading only */}
+          <div className="lg:hidden mb-10">
+            <div className="flex items-center gap-3 mb-5">
               <span className="divider" aria-hidden="true" />
               <span className="label-eyebrow text-cadet/60">Real experiences</span>
             </div>
             <h2
               id="testimonials-heading"
               className="font-monument text-frosted"
-              style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.6rem)', lineHeight: 1.15 }}
+              style={{ fontSize: 'clamp(1.55rem, 3vw, 2.4rem)', lineHeight: 1.15 }}
             >
               What people realised
               <br />
               <span className="text-cadet">after starting.</span>
             </h2>
           </div>
-        </div>
 
-        {/* Mobile image */}
-        <div className="lg:hidden mb-10 rounded-sm overflow-hidden">
-          <img
-            src="/images/hero-couple.jpg"
-            alt="Couple at home — estate planning gives families clarity and confidence"
-            className="w-full h-[200px] object-cover object-center"
-          />
-        </div>
+          {/* Desktop hidden heading (for a11y — visible heading is on image) */}
+          <h2 id="testimonials-heading" className="sr-only">
+            What people realised after starting
+          </h2>
 
-        {/* Testimonials grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((t) => (
-            <figure key={t.name} className="flex flex-col gap-5">
-              <blockquote className="border-l border-cadet/22 pl-5 flex-1">
-                <p className="font-sans text-[14px] text-frosted/70 leading-relaxed italic">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-              </blockquote>
-              <figcaption className="flex items-center gap-3">
-                {/* Initials avatar */}
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 border border-cadet/20"
-                  style={{ background: 'rgba(157,180,192,0.10)' }}
-                  aria-hidden="true"
-                >
-                  <span className="font-monument text-cadet text-[0.6rem] tracking-wider">
-                    {t.initials}
-                  </span>
-                </div>
-                <div>
-                  <p className="font-sans text-sm text-frosted/85 font-medium">
-                    {t.name}
+          {/* Testimonials — stacked vertically */}
+          <div className="flex flex-col divide-y divide-cadet/[0.08]">
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.name} className="py-8 first:pt-0 last:pb-0">
+                <blockquote className="mb-5">
+                  <p className="font-sans text-[0.9rem] text-frosted/65 leading-[1.75] italic">
+                    &ldquo;{t.quote}&rdquo;
                   </p>
-                  <p className="font-sans text-xs text-cadet/45 mt-0.5">{t.detail}</p>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
+                </blockquote>
+                <figcaption className="flex items-center gap-3">
+                  {/* Initials avatar */}
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 border border-cadet/18"
+                    style={{ background: 'rgba(157,180,192,0.08)' }}
+                    aria-hidden="true"
+                  >
+                    <span className="font-monument text-cadet text-[0.58rem] tracking-wider">
+                      {t.initials}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-sans text-sm text-frosted/82 font-medium">
+                      {t.name}
+                    </p>
+                    <p className="font-sans text-xs text-cadet/42 mt-0.5">{t.detail}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </div>
     </section>
