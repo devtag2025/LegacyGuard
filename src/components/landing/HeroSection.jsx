@@ -49,7 +49,7 @@ export function HeroSection() {
       {/* ── Main two-column layout ── */}
       <div className="relative z-10 min-h-dvh flex flex-col lg:flex-row">
         {/* ── LEFT — Copy ── */}
-        <div className="flex flex-col justify-center lg:w-[50%] px-6 md:px-12 xl:px-20 pt-10 pb-16">
+        <div className="flex flex-col justify-center lg:w-[50%] px-6 md:px-12 xl:px-20 pt-3 pb-16">
           <div className="flex items-center gap-3 mb-6">
             <span className="block w-6 h-px bg-cadet opacity-40" aria-hidden="true" />
             <span className="label-eyebrow text-cadet opacity-60">
