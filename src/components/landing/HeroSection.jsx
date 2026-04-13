@@ -140,7 +140,7 @@ export function HeroSection() {
           {/* Image — top 60% of right column */}
           <div className="relative flex-1 overflow-hidden">
             <img
-              src="/public/images/hero-family.png"
+              src="/images/hero-family.png"
               alt="Family on the beach at sunset — planning ahead protects the people you love"
               className="w-full h-full object-cover object-center"
             />

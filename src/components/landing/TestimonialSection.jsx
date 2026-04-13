@@ -29,7 +29,7 @@ export function TestimonialsSection() {
         {/* ── LEFT — Full-height image with overlays ── */}
         <div className="relative lg:w-[44%] h-[320px] lg:h-auto flex-shrink-0 overflow-hidden">
           <img
-            src="/public/images/hero-couple.png"
+            src="/images/hero-couple.png"
             alt="Couple at home — estate planning gives families clarity and confidence"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
