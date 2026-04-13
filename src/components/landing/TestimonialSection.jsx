@@ -1,106 +1,102 @@
-/**
- * TestimonialsSection
- * File: src/features/landing/TestimonialsSection.jsx
- *
- * Human, family-specific, scenario-based — no star ratings, no volume claims.
- */
+// src/features/landing/TestimonialsSection.jsx
+// Directive 7 — heading updated to "What people realised after starting"
+// Initials avatars added — minimal, non-distracting
+// Directive 8 — couple image added as subtle section background
 
 const TESTIMONIALS = [
   {
-    quote: "We have two children from my first marriage and a shared property with my husband. I assumed our wills covered everything. The assessment showed several gaps we hadn't considered. We now have proper structures in place.",
-    name: "Sarah C.",
-    descriptor: "Homeowner, Surrey",
-    initials: "SC",
+    quote:
+      "We'd assumed a basic will was enough. The assessment flagged that our property ownership and blended family situation made things more complicated than we'd realised. The adviser explained it clearly and we now have a structure we're confident in.",
+    name: 'James & Carol W.',
+    detail: 'Homeowners, Birmingham. Blended family.',
+    initials: 'JW',
   },
   {
-    quote: "What I found useful was being guided through the right questions first, rather than just being handed a form to complete. The adviser conversation was straightforward and not at all pushy.",
-    name: "David M.",
-    descriptor: "Retired, Yorkshire",
-    initials: "DM",
+    quote:
+      "I hadn't considered what would happen to my affairs if I lost capacity before I died. The LPA conversation was one I hadn't expected to have — but I'm glad I did.",
+    name: 'Margaret T.',
+    detail: 'Retired, Surrey.',
+    initials: 'MT',
   },
   {
-    quote: "We bought our second property last year and it made me realise our old wills weren't adequate. The assessment flagged the IHT implications immediately. We wouldn't have known to even ask about that.",
-    name: "Priya & Raj L.",
-    descriptor: "Homeowners, London",
-    initials: "PL",
+    quote:
+      "The call wasn't what I expected. There was no pressure, no sales pitch. We talked through my situation and they told me honestly what they thought I needed — which turned out to be less than I thought.",
+    name: 'David K.',
+    detail: 'Self-employed, Manchester.',
+    initials: 'DK',
   },
 ];
-
-function TestiCard({ quote, name, descriptor, initials }) {
-  return (
-    <article
-      className="flex flex-col justify-between gap-8 rounded-sm"
-      style={{
-        padding: "2.25rem",
-        border: "1px solid rgba(157,180,192,.15)",
-        background: "rgba(54,62,68,.35)",
-        minHeight: 280,
-      }}
-    >
-      {/* Quote mark */}
-      <svg width="26" height="18" viewBox="0 0 28 20" fill="none" aria-hidden="true">
-        <path d="M0 20V12.571C0 8.127 1.333 4.635 4 2.095 6.667.698 9.778.001 13.333 0L14.667 2.286C11.778 3.048 9.778 4.254 8.667 5.905 7.556 7.556 7 9.333 7 11.238V12h7V20H0Z" fill="#9DB4C0" fillOpacity=".25"/>
-      </svg>
-
-      <p className="font-sans text-sm leading-relaxed flex-1" style={{ color: "rgba(253,254,254,.82)" }}>
-        &ldquo;{quote}&rdquo;
-      </p>
-
-      <footer className="flex items-center gap-4">
-        <div
-          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-          style={{ border: "1px solid rgba(157,180,192,.35)" }}
-          aria-hidden="true"
-        >
-          <span className="font-monument text-cadet text-xs">{initials}</span>
-        </div>
-        <div>
-          <p className="font-sans text-frosted text-sm font-medium leading-snug">{name}</p>
-          <p className="font-sans text-xs tracking-wide" style={{ color: "rgba(157,180,192,.65)", marginTop: 2 }}>
-            {descriptor}
-          </p>
-        </div>
-      </footer>
-    </article>
-  );
-}
 
 export function TestimonialsSection() {
   return (
     <section
-      id="testimonials"
-      className="section bg-night"
-      aria-labelledby="testi-heading"
+      className="section bg-night relative overflow-hidden"
+      aria-labelledby="testimonials-heading"
     >
-      <div className="container-brand">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="divider" aria-hidden="true" />
-              <span className="label-eyebrow" style={{ color: "rgba(157,180,192,.65)" }}>In their words</span>
-            </div>
-            <h2
-              id="testi-heading"
-              className="font-monument text-frosted"
-              style={{ fontSize: "clamp(1.8rem,3vw,2.7rem)", lineHeight: 1.12 }}
-            >
-              Real families.<br />Real situations.
-            </h2>
-          </div>
-          <p
-            className="font-sans text-xs leading-relaxed text-right hidden sm:block max-w-[160px]"
-            style={{ color: "rgba(157,180,192,.38)" }}
-          >
-            Names and identifying details changed to protect privacy.
-          </p>
+      {/* Directive 8 — subtle couple image as section background */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/hero-couple.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.04,
+        }}
+      />
+
+      <div className="container-brand relative z-10">
+        <div className="flex items-center gap-3 mb-8">
+          <span className="divider" aria-hidden="true" />
+          {/* Directive 7 — updated eyebrow and heading */}
+          <span className="label-eyebrow text-cadet/60">Real experiences</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <h2
+          id="testimonials-heading"
+          className="font-monument text-frosted mb-14"
+          style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.6rem)', lineHeight: 1.15 }}
+        >
+          What people realised
+          <br />
+          <span className="text-cadet">after starting.</span>
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TESTIMONIALS.map((t) => (
-            <TestiCard key={t.name} {...t} />
+            <figure key={t.name} className="flex flex-col gap-5">
+              <blockquote className="border-l border-cadet/22 pl-5 flex-1">
+                <p className="font-sans text-[14px] text-frosted/70 leading-relaxed italic">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+              </blockquote>
+              <figcaption className="flex items-center gap-3">
+                {/* Directive 7 — initials avatar */}
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: 'rgba(157,180,192,0.10)',
+                    border: '1px solid rgba(157,180,192,0.20)',
+                  }}
+                  aria-hidden="true"
+                >
+                  <span className="font-monument text-cadet text-[0.6rem] tracking-wider">
+                    {t.initials}
+                  </span>
+                </div>
+                <div>
+                  <p className="font-sans text-sm text-frosted/85 font-medium">
+                    {t.name}
+                  </p>
+                  <p className="font-sans text-xs text-cadet/45 mt-0.5">{t.detail}</p>
+                </div>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
+export default TestimonialsSection;

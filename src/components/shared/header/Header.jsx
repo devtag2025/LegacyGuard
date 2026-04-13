@@ -6,12 +6,12 @@
  * Mobile drawer with overlay. Logo uses /logo.png from public folder.
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 const NAV_ITEMS = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Who It's For",  href: "#who-its-for"  },
-  { label: "About Us",      href: "/about"         },
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: "Who It's For", href: '#who-its-for' },
+  { label: 'About Us', href: '/about' },
 ];
 
 function Logo() {
@@ -29,8 +29,10 @@ function Logo() {
 
 function MobileDrawer({ isOpen, onClose }) {
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   return (
@@ -39,7 +41,7 @@ function MobileDrawer({ isOpen, onClose }) {
         onClick={onClose}
         aria-hidden="true"
         className="fixed inset-0 z-40 bg-night/80 backdrop-blur-sm transition-opacity duration-300"
-        style={{ opacity: isOpen ? 1 : 0, pointerEvents: isOpen ? "auto" : "none" }}
+        style={{ opacity: isOpen ? 1 : 0, pointerEvents: isOpen ? 'auto' : 'none' }}
       />
 
       <div
@@ -48,13 +50,13 @@ function MobileDrawer({ isOpen, onClose }) {
         aria-label="Navigation menu"
         className="fixed top-0 right-0 h-full w-[280px] z-50 bg-night flex flex-col transition-transform duration-300"
         style={{
-          borderLeft: "1px solid var(--border-on-dark)",
-          transform: isOpen ? "translateX(0)" : "translateX(100%)",
+          borderLeft: '1px solid var(--border-on-dark)',
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
         <div
           className="flex items-center justify-between px-6 py-5"
-          style={{ borderBottom: "1px solid var(--border-on-dark)" }}
+          style={{ borderBottom: '1px solid var(--border-on-dark)' }}
         >
           <Logo />
           <button
@@ -62,21 +64,33 @@ function MobileDrawer({ isOpen, onClose }) {
             aria-label="Close menu"
             className="text-frosted hover:text-cadet transition-colors p-1"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
         </div>
 
         {/* Links */}
-        <nav className="flex-1 px-6 py-8 flex flex-col gap-1" aria-label="Mobile navigation">
+        <nav
+          className="flex-1 px-6 py-8 flex flex-col gap-1"
+          aria-label="Mobile navigation"
+        >
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={onClose}
               className="text-frosted text-base py-3 hover:text-cadet transition-colors tracking-wide font-sans"
-              style={{ borderBottom: "1px solid var(--border-on-dark)" }}
+              style={{ borderBottom: '1px solid var(--border-on-dark)' }}
             >
               {item.label}
             </a>
@@ -95,7 +109,7 @@ function MobileDrawer({ isOpen, onClose }) {
 }
 
 export function Header({ transparent = false }) {
-  const [scrolled,   setScrolled]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleScroll = useCallback(() => {
@@ -103,9 +117,9 @@ export function Header({ transparent = false }) {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
   const opaque = scrolled || !transparent;
@@ -116,17 +130,21 @@ export function Header({ transparent = false }) {
         role="banner"
         className="fixed top-0 left-0 right-0 z-30 transition-all duration-300"
         style={{
-          backgroundColor: opaque ? "var(--color-night)" : "transparent",
-          borderBottom: opaque ? "1px solid var(--border-on-dark)" : "1px solid transparent",
+          backgroundColor: opaque ? 'var(--color-night)' : 'transparent',
+          borderBottom: opaque
+            ? '1px solid var(--border-on-dark)'
+            : '1px solid transparent',
         }}
       >
         <div className="container-brand">
           <div className="flex items-center justify-between h-16 md:h-[70px]">
-
             <Logo />
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
+            <nav
+              className="hidden md:flex items-center gap-8"
+              aria-label="Primary navigation"
+            >
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
@@ -141,15 +159,28 @@ export function Header({ transparent = false }) {
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
               <a
-                href="tel:+441234567890"
+                href="tel:02045832632"
                 className="flex items-center gap-1.5 text-cadet text-xs tracking-wide hover:text-frosted transition-colors font-sans"
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.01 2.88 2 2 0 012 .7h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.72a16 16 0 006.29 6.29l1.28-1.29a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.01 2.88 2 2 0 012 .7h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.72a16 16 0 006.29 6.29l1.28-1.29a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                +12 (0) 1234 567 890
+                020 4583 2632
               </a>
-              <a href="/book" className="btn btn-ghost text-xs py-2.5 px-5" data-track="header-cta">
+              <a
+                href="/book"
+                className="btn btn-ghost text-xs py-2.5 px-5"
+                data-track="header-cta"
+              >
                 Book a Call
               </a>
             </div>
@@ -161,10 +192,18 @@ export function Header({ transparent = false }) {
               aria-label="Open navigation menu"
               aria-expanded={mobileOpen}
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <line x1="3" y1="12" x2="21" y2="12"/>
-                <line x1="3" y1="18" x2="21" y2="18"/>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             </button>
           </div>
