@@ -33,10 +33,14 @@ export function BookingPage() {
           <h1 className="font-monument text-frosted text-[1.5rem] sm:text-[1.9rem] leading-[1.2] mb-3">
             Choose a time that works for you.
           </h1>
-          <p className="font-sans text-cadet/58 text-[15px] leading-relaxed max-w-130">
-            No obligation — this is simply a conversation to understand your situation.
-            There's no commitment to proceed with anything afterwards.
-          </p>
+          <div className="font-sans text-cadet/58 text-[15px] leading-relaxed max-w-130">
+            <p className="mb-2">
+              No obligation — this is simply a conversation to understand your situation.
+            </p>
+            <p className="font-sans text-md text-frosted/85 mb-4">
+              Takes around 15 minutes.
+            </p>
+          </div>
         </div>
 
         {/* Format choice */}
@@ -44,6 +48,7 @@ export function BookingPage() {
           <p className="label-eyebrow text-cadet/45 mb-4">
             How would you prefer to speak?
           </p>
+
           <div className="grid grid-cols-2 gap-3 max-w-105">
             {FORMAT_OPTIONS.map((opt) => (
               <button
@@ -125,3 +130,4 @@ export function BookingPage() {
     </div>
   );
 }
+export default BookingPage;

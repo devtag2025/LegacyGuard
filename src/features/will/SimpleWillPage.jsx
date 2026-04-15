@@ -94,3 +94,5 @@ export function SimpleWillPage() {
     </PageLayout>
   );
 }
+
+export default SimpleWillPage;

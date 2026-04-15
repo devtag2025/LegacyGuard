@@ -56,3 +56,5 @@ export function QuestionnairePage() {
     </div>
   );
 }
+
+export default QuestionnairePage;

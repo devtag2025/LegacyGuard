@@ -155,7 +155,7 @@ export function EducationSection() {
               {/* Directive 6 — standardised CTAs */}
               <a
                 href="/assessment"
-                className="btn btn-ghost w-full text-center text-sm"
+                className="btn btn-ghost p-5 w-full text-center text-sm"
                 data-track="edu-cta-primary"
               >
                 Start Your 3-Minute Assessment
@@ -163,8 +163,8 @@ export function EducationSection() {
               <div className="text-center mt-3">
                 <a
                   href="/book"
-                  className="font-sans text-xs hover:text-frosted transition-colors"
-                  style={{ color: 'rgba(157,180,192,0.45)' }}
+                  className="font-sans text-cadet/45 text-xs hover:text-frosted transition-colors"
+                  style={{ color: 'rgba(157,180,192Start,0.45)' }}
                   data-track="edu-cta-adviser"
                 >
                   Speak to an Adviser

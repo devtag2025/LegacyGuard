@@ -27,3 +27,5 @@ export function LandingPage() {
     </PageLayout>
   );
 }
+
+export default LandingPage;

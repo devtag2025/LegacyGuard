@@ -26,3 +26,5 @@ export function DualCTA({ onAdviserClick }) {
     </div>
   );
 }
+
+export default DualCTA;

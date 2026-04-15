@@ -1,16 +1,8 @@
-/**
- * Header — Shared Layout Component
- * File: src/components/shared/Header.jsx
- *
- * Client-provided implementation. Fixed, transparent-to-opaque on scroll.
- * Mobile drawer with overlay. Logo uses /logo.png from public folder.
- */
 
 import { useState, useEffect, useCallback } from 'react';
 
 const NAV_ITEMS = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: "Who It's For", href: '#who-its-for' },
+  { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
 ];
 

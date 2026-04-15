@@ -23,3 +23,5 @@ export function FlagSummary({ flags }) {
     </div>
   );
 }
+
+export default FlagSummary;

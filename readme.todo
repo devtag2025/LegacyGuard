@@ -1,0 +1,10 @@
+The changes that client want that have been made in the Footer.jsx file are as follows:
+  he wants the links attached to it and the content from the those pages we must take the data and create our seperate pages for those and link them to the footer.
+  1. Privacy Policy
+  2. Terms of Service
+  3. Cookie Policy
+  4. Data Protection Policy
+  5. Accessibility Statement
+
+  WE HAVE TO CREATE A SEPERATE PAGE FOR ABOUT IT SHOULD BE SIMPLE AND HAVE TO PUT IT IN T HE NAVBAR AND LINK IT TO THE FOOTER AS WELL:
+    

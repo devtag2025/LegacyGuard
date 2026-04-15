@@ -10,8 +10,6 @@ const COLUMNS = [
     links: [
       { label: 'Online Will', href: '/will' },
       { label: 'Adviser Consultation', href: '/book' },
-      { label: 'Estate Planning', href: '/estate' },
-      { label: 'Power of Attorney', href: '/lpa' },
     ],
   },
   {
@@ -19,17 +17,16 @@ const COLUMNS = [
     links: [
       { label: 'About iTrust121', href: '/about' },
       { label: 'How It Works', href: '#how-it-works' },
-      { label: 'Our Advisers', href: '/team' },
-      { label: 'Contact Us', href: '/contact' },
+
     ],
   },
   {
     heading: 'Legal',
     links: [
+      { label: 'Terms & Conditions', href: '/terms' },
       { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
       { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'Complaints Policy', href: '/complaints' },
+      { label: 'Complaints', href: '/complaints' },
     ],
   },
 ];
@@ -195,13 +192,13 @@ export function Footer() {
                 className="font-sans text-xs font-semibold tracking-widest uppercase mb-2"
                 style={{ color: 'rgba(157,180,192,0.50)' }}
               >
-                Registered Office
+                Correspondence Address
               </p>
               <p
                 className="font-sans text-xs leading-relaxed"
                 style={{ color: 'rgba(157,180,192,0.40)' }}
               >
-                iTrust121 Limited
+
                 <br />
                 Tower Court, Oakdale Road
                 <br />
@@ -218,13 +215,13 @@ export function Footer() {
                 className="font-sans text-xs font-semibold tracking-widest uppercase mb-2"
                 style={{ color: 'rgba(157,180,192,0.50)' }}
               >
-                Correspondence Address
+                Registered Office
               </p>
               <p
                 className="font-sans text-xs leading-relaxed"
                 style={{ color: 'rgba(157,180,192,0.40)' }}
               >
-                iTrust121 Limited
+
                 <br />
                 85 Great Portland Street, First Floor
                 <br />
@@ -252,7 +249,7 @@ export function Footer() {
               &copy; {year} iTrust121 Limited. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              {['Privacy', 'Terms', 'Cookies'].map((label, i) => (
+              {['Privacy', 'Terms', 'Cookies', 'Complaints'].map((label, i) => (
                 <span key={label} className="flex items-center gap-4">
                   {i > 0 && (
                     <span style={{ color: 'rgba(157,180,192,0.22)' }}>&middot;</span>

@@ -1,6 +1,3 @@
-// src/features/landing/TrustSignalsSection.jsx
-// Directive 1 — remove FCA, update regulatory language
-// Directive 13 — "Operating within English and Welsh legal frameworks"
 
 const SIGNALS = [
   {

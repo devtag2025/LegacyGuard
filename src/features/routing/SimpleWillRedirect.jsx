@@ -63,3 +63,6 @@ export function SimpleWillRedirect() {
     </div>
   );
 }
+
+
+export default SimpleWillRedirect;
