@@ -3,7 +3,7 @@ export const QUESTIONS = [
   {
     id: 1,
     key: "relationshipStatus",
-    heading: "What is your relationship status?",
+    heading: "Which best describes your current situation?",
     sub: "This helps us understand how your estate may need to be structured.",
     options: [
       { value: "single",           label: "Single" },
@@ -15,8 +15,8 @@ export const QUESTIONS = [
   {
     id: 2,
     key: "children",
-    heading: "Do you have children or dependents?",
-    sub: "Including stepchildren or children from a previous relationship.",
+    heading: "Do you have children or anyone who depends on you?",
+    sub: "This can affect how assets are passed on and protected.",
     options: [
       { value: "no",            label: "No" },
       { value: "yes_current",   label: "Yes, with current partner" },
@@ -27,8 +27,8 @@ export const QUESTIONS = [
   {
     id: 3,
     key: "property",
-    heading: "Do you own property?",
-    sub: "Any property ownership is one of the most significant factors in estate planning.",
+    heading: "Do you own your home or any other property?",
+    sub: "Property is often the most important factor in estate planning.",
     options: [
       { value: "no",            label: "No, I rent or live with family" },
       { value: "yes_outright",  label: "Yes, I own outright" },
@@ -39,8 +39,8 @@ export const QUESTIONS = [
   {
     id: 4,
     key: "assets",
-    heading: "How would you describe your financial situation?",
-    sub: "A broad sense — this helps us understand whether inheritance tax planning may be relevant.",
+    heading: "Which of the following best describes your situation?",
+    sub: "A broad sense — this helps identify whether additional planning may be relevant.",
     options: [
       { value: "starting_out", label: "Just starting out" },
       { value: "comfortable",  label: "Comfortable" },
@@ -51,11 +51,11 @@ export const QUESTIONS = [
   {
     id: 5,
     key: "familyComplexity",
-    heading: "Is there anything in your family situation that feels complicated?",
-    sub: "Blended families, estrangements, dependents with additional needs — all of these matter.",
+    heading: "Does anything about your family situation feel slightly more complex?",
+    sub: "For example, previous relationships, stepchildren, or anything that doesn’t feel completely straightforward.",
     options: [
-      { value: "straightforward",  label: "No, fairly straightforward" },
-      { value: "some_dynamics",    label: "There are some family dynamics" },
+      { value: "straightforward",  label: "No, everything is straightforward" },
+      { value: "some_dynamics",    label: "Yes, a little" },
       { value: "quite_complex",    label: "Yes, it's quite complex" },
       { value: "not_sure",         label: "Not sure" },
     ],
@@ -63,8 +63,8 @@ export const QUESTIONS = [
   {
     id: 6,
     key: "priority",
-    heading: "What matters most to you when sorting your will?",
-    sub: "There's no right answer — this helps us understand what outcome you're looking for.",
+    heading: "What matters most to you when putting a will in place?",
+    sub: "There’s no right answer — this helps us understand what outcome you’re looking for.",
     options: [
       { value: "simple_affordable", label: "Keeping it simple and affordable" },
       { value: "family_protected",  label: "Making sure my family is properly protected" },

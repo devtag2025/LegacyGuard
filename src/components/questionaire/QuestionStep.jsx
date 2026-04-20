@@ -10,9 +10,7 @@ export function QuestionStep({
   onSelect,
   onNext,
   onBack,
-  isLastStep,
 }) {
-  const hasAnswer = !!selectedAnswer;
   const timerRef = useRef(null);
   const [countdown, setCountdown] = useState(false);
 
@@ -30,13 +28,11 @@ export function QuestionStep({
     clearTimeout(timerRef.current);
     onSelect(value);
 
-    if (!isLastStep) {
-      setCountdown(true);
-      timerRef.current = setTimeout(() => {
-        setCountdown(false);
-        onNextRef.current();
-      }, AUTO_ADVANCE_DELAY);
-    }
+    setCountdown(true);
+    timerRef.current = setTimeout(() => {
+      setCountdown(false);
+      onNextRef.current();
+    }, AUTO_ADVANCE_DELAY);
   };
 
   return (
@@ -111,10 +107,10 @@ export function QuestionStep({
           Back
         </button>
 
-        {/* Right side — countdown on all devices, confirm on last step */}
+        {/* Right side — auto-advance countdown */}
         <div className="flex items-center gap-3">
-          {/* Countdown bar — shown on all devices for non-last steps */}
-          {countdown && !isLastStep && (
+          {/* Countdown bar — shown after any selection */}
+          {countdown && (
             <div
               className="flex items-center gap-2.5"
               style={{ animation: 'qs-fadeup 0.2s ease both' }}
@@ -138,29 +134,6 @@ export function QuestionStep({
                 />
               </div>
             </div>
-          )}
-
-          {/* Last step — confirm button always shown */}
-          {isLastStep && (
-            <button
-              type="button"
-              onClick={onNext}
-              disabled={!hasAnswer}
-              style={{
-                transition: 'all 0.2s cubic-bezier(0.22,1,0.36,1)',
-                opacity: hasAnswer ? 1 : 0.28,
-              }}
-              className={`
-                font-sans text-[14px] px-7 py-3 rounded-sm border
-                ${
-                  hasAnswer
-                    ? 'border-cadet/50 text-cadet hover:bg-cadet hover:text-night hover:border-cadet active:scale-[0.97]'
-                    : 'border-cadet/12 text-cadet/20 cursor-not-allowed'
-                }
-              `}
-            >
-              See my results
-            </button>
           )}
         </div>
       </div>
