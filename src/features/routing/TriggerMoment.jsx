@@ -77,6 +77,11 @@ export function TriggerMomentPage() {
           </ul>
         )}
 
+        <p className="font-sans text-[14px] text-cadet/60 leading-relaxed mb-5">
+          Many people in a similar position find it helpful to have a short conversation
+          before finalising their will — simply to make sure everything is structured correctly.
+        </p>
+
         {/* Pre-CTA advisory line — client-specified, do not alter */}
         <p className="font-sans text-[14px] text-cadet/60 leading-relaxed mb-8">
           A short conversation can help you understand how these points may apply to your

@@ -10,7 +10,6 @@ export function QuestionnairePage() {
     currentStep,
     currentQuestion,
     currentAnswer,
-    isLastStep,
     progress,
     selectAnswer,
     goNext,
@@ -49,7 +48,6 @@ export function QuestionnairePage() {
           onSelect={selectAnswer}
           onNext={goNext}
           onBack={goBack}
-          isLastStep={isLastStep}
         />
 
       </div>
